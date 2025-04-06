@@ -89,11 +89,13 @@ def clone_repos(repos, dest_path):
 
 def compress_dest(dest_path):
     dest_path = Path(dest_path)
+    src_path = dest_path
+
     arc_path = dest_path / '..' / 'archive'
-    print(arc_path)
     arc_path.mkdir(parents=True, exist_ok=True)
+
     dest_path = arc_path / dest_path.parts[-1]
-    shutil.make_archive(dest_path, 'zip', arc_path)
+    shutil.make_archive(dest_path, 'zip', src_path)
 
 def remove_uncompressed_dest(dest_path):
     try:
